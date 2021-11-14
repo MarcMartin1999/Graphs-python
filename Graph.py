@@ -1,5 +1,5 @@
 import Adjacencie as ad
-class graph:
+class Graph:
     #Nodes will be passed like "1,2,3,4" and connections like "1-2,2-3,4-4"
     def __init__(self,vertices:str,adjacencies:str):
 
@@ -171,4 +171,11 @@ class graph:
        
         return len(adj_list2) == 0
 
+         
         
+
+
+
+
+
+
