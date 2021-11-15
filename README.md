@@ -9,8 +9,8 @@ I created a class named Graph, this class allows to create graphs passing it ver
                             
 Vertices will be csv and adjacencies will be csv too but separated the two vertices with "-".
 
-I implemented the substraction of one graph with one of its subgraphs, and the posibility to know if two 
-graphs are isomorphs.
+I implemented the substraction of one graph with one of its subgraphs, the posibility to know if two 
+graphs are isomorphs, a satatic method that returns n-complete graphs and the posoibility to return the graph's complementary
 
 To manage the operations i created the methods for return the order and length of a graph, for returning the degree of one specific vertex, etc.
 And i created a class to represent de adjacencies.
