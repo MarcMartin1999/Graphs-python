@@ -19,7 +19,7 @@ class Graph:
             if adj.a and adj.b not in vertex_list:
                 raise Exception("Adjacencies Error: Node not Exist")
             elif adj.a == adj.b:
-                raise Exception("Adjacencies Error: Not Digraph")
+                raise Exception("Adjacencies Error: Not graph")
             aux_adjacencies.append(adj)
         
         self.vertices = vertex_list
@@ -27,7 +27,7 @@ class Graph:
     #Returns a new graph with the same values than self
     def copy(self):
         
-        copied_graph = graph(','.join(self.vertices),','.join(self.adjacencies_string_list))
+        copied_graph = Graph(','.join(self.vertices),','.join(self.adjacencies_string_list))
         return copied_graph
     def __str__(self) -> str:
         str_ret = "--Vertices: " + str(self.vertices)+ "\n" + "--Adjacencies: "+ str(self.adjacencies_string_list)
@@ -48,7 +48,10 @@ class Graph:
         for adj in self.adjacencies:
             adj_str.append(adj.to_string)
         return adj_str
-    
+    #Returns complementary's graph
+    @property
+    def complementary(self):
+        return self.complete(self.order)-self 
     #Returns the degree of a vertex
     def vertex_degree(self,vertex):
         degree = 0
@@ -57,7 +60,7 @@ class Graph:
                 degree += 1 
         return degree
 
-    #Returns true if the actual graph has an isomorphism with the graph passed
+    #Returns true if the actual graph has an isomorphism with the other graph
     def isomorph(self,other:object):
         if other.__class__ != self.__class__: raise Exception("Isomorph Error: only isomorphism with graphs")
 
@@ -82,9 +85,23 @@ class Graph:
 
     def __add__(self,other):
         raise Warning("Addition not implemented")
-        pass
+
+    #returns a n-complete graph
+    @staticmethod
+    def complete(n:int):
+        n_vertices = []
+        for i in range(n):
+            n_vertices.append(str(i+1))
+        
+        n_vertices2 = n_vertices.copy()
+        l_adj = []
+        for v in n_vertices:
+            n_vertices2.remove(v)
+            for v2 in n_vertices2:
+                l_adj.append(ad.adjacencie(v,v2).to_string)
 
 
+        return Graph(",".join(n_vertices),",".join(l_adj))
     #Private methods
     def __invariants(self,other):
         if self.order != other.order or self.length != other.length:
@@ -171,7 +188,7 @@ class Graph:
        
         return len(adj_list2) == 0
 
-         
+
         
 
 
